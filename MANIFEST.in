@@ -1,0 +1,23 @@
+graft docs
+graft src
+graft ci
+graft tests
+
+include .cookiecutterrc
+include .coveragerc
+include .editorconfig
+include .github/workflows/github-actions.yml
+include .pre-commit-config.yaml
+include .readthedocs.yml
+include pytest.ini
+include tox.ini
+
+include ./src/.info/*
+include ./envs/*
+include CONTRIBUTING.md
+include LICENSE
+include README.md
+include ./.vscode/*
+include ./.gitlab/*
+
+global-exclude *.py[cod] __pycache__/* *.so *.dylib

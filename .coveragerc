@@ -1,0 +1,20 @@
+[paths]
+source =
+   src
+   */site-packages
+
+[run]
+branch = true
+source =
+    financetda
+    tests
+parallel = true
+omit = 
+    tests/*
+    */__init__.py
+    */__main__.py
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*

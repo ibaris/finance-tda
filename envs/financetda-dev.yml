@@ -1,0 +1,30 @@
+name: financetda-dev
+channels:
+  - defaults
+  - anaconda
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy
+  - scipy
+  - mkl
+  - conda-forge::pyglfw
+  - conda-forge::pre-commit
+  - matplotlib
+  - seaborn
+  - jupyter
+  - jupyterlab
+  - cython
+  - psutil
+  - pylint
+  - mypy
+  - pycodestyle
+  - pytest
+  - pytest-cov
+  - sphinx
+  - pip
+  - pip:
+      - pyyaml
+      - tox
+      - bumpver
+      - Ripser
