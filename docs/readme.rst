@@ -1,7 +1,7 @@
 ========
 Overview
 ========
-Finance TDA [v-2023.12.2]
+Finance TDA [v-2023.12.3]
 
 
 .. start-badges
@@ -17,9 +17,9 @@ Finance TDA [v-2023.12.2]
     :target: https://finance-tda.readthedocs.io/
     :alt: Documentation Status
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/ibaris/finance-tda/v2023.12.2.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/ibaris/finance-tda/v2023.12.3.svg
     :alt: Commits since latest release
-    :target: https://github.com/ibaris/finance-tda/compare/v2023.12.2...main
+    :target: https://github.com/ibaris/finance-tda/compare/v2023.12.3...main
 
 
 .. end-badges
