@@ -14,7 +14,7 @@ def read(*names, **kwargs):
 
 setup(
     name='fintda',
-    version='2023.12.1',
+    version='2023.12.2',
     description='An example package. Generated with cookiecutter-pylibrary.',
     author='Ismail Baris',
     author_email='i.baris@outlook.de',
