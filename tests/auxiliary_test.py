@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from financetda.auxiliary import get_data_range, load_data
+from fintda.auxiliary import get_data_range, load_data
 
 # Load test data
 data = load_data()

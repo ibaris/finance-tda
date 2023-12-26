@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 import pandas as pd
 
-from financetda.ftda import FinanceTDA
+from fintda.ftda import FinTDA
 
 
 class FinanceTDATest(unittest.TestCase):
@@ -16,8 +16,8 @@ class FinanceTDATest(unittest.TestCase):
         # Set sample weights
         weights = [0.3, 0.4, 0.3]
 
-        # Create FinanceTDA instance
-        self.ftda = FinanceTDA(returns, weights)
+        # Create FinTDA instance
+        self.ftda = FinTDA(returns, weights)
 
     def test_compute_dgm(self):
         # Test compute_dgm method

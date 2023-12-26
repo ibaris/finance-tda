@@ -27,7 +27,7 @@ push = true
 "README.md" = [
     "{version}",
 ]
-"src/financetda/__init__.py" = [
+"src/fintda/__init__.py" = [
     "{version}",
 ]
 "docs/conf.py" = [

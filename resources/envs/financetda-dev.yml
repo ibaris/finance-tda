@@ -1,4 +1,4 @@
-name: financetda-dev
+name: fintda-dev
 channels:
   - defaults
   - anaconda

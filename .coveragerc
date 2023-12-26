@@ -6,7 +6,7 @@ source =
 [run]
 branch = true
 source =
-    financetda
+    fintda
     tests
 parallel = true
 omit = 

@@ -1,9 +1,9 @@
-financetda
+fintda
 ==========
 
 .. testsetup::
 
-    from financetda import *
+    from fintda import *
 
-.. automodule:: financetda
+.. automodule:: fintda
     :members:

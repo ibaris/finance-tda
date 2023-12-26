@@ -31,7 +31,7 @@ __all__ = ['FinTDA']
 
 class FinTDA:
     """
-    FinTDA class for computing persistence diagrams and analyzing financial time series data.
+    fintda class for computing persistence diagrams and analyzing financial time series data.
 
     Parameters
     ----------
@@ -63,7 +63,7 @@ class FinTDA:
     _volatility : float
         The volatility of the returns data.
     info : dict
-        Additional information about the FinTDA instance.
+        Additional information about the fintda instance.
 
     Methods
     -------
@@ -109,12 +109,12 @@ class FinTDA:
     # Magic Methods
     # ----------------------------------------------------------------------------------------------
     def __repr__(self) -> str:
-        """Return the string representation of the FinTDA instance.
+        """Return the string representation of the fintda instance.
 
         Returns
         -------
         str
-            The string representation of the FinTDA instance.
+            The string representation of the fintda instance.
         """
         head = "<VaR - {mu}: {mu_val}%, {sigma}: {sigma_val}%, " \
                "Portfolio {sigma}: {port_sigma_val}%>".format(mu=chr(956),

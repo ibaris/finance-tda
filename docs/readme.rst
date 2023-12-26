@@ -31,7 +31,7 @@ Installation
 
 ::
 
-    pip install financetda
+    pip install fintda
 
 You can also install the in-development version with::
 
