@@ -1,25 +1,3 @@
-<div align="center">
-    <a href="https://unsplash.com/@alterego_swiss?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
-    <p>
-        <img src="./resources/logo/logo.jpg">
-    </p>
-</a>
-<h2 align="center">Finance TDA</h4>
-<h4 align="center">Topological Tail Dependence: Evidence from Forecasting Realized Volatility</h4>
-<h5 align="center">[v-2023.12.1]</h5>
-
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://media1.giphy.com/media/hpddP09Trx1AwSVlgm/giphy.gif?cid=ecf05e47uwg39vrpmksf5f73kcmi8iuy11r9p2l3540j8jfo&ep=v1_gifs_search&rid=giphy.gif&ct=g)
-[![forthebadge](https://forthebadge.com/images/badges/built-with-grammas-recipe.svg)](https://media2.giphy.com/media/q2b0xsUuQFGHDoUVFB/giphy.gif?cid=ecf05e47fb1zlbo33kivfd73z4yzdn97ej6tagfeyacvfojo&ep=v1_gifs_search&rid=giphy.gif&ct=g)
-
-<p align="center">
-  <a href="#introduction">Introduction</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#Documentation">Documentation</a> •
-  <a href="#example">Example</a> •
-  <a href="#reference">Reference</a>
-</p>
-</div>
-
 # Introduction
 
 This repository hosts the Python package developed from the research presented in the paper "Topological Tail Dependence: Evidence from Forecasting Realized Volatility" by Hugo Gobato Souto. The package is designed to implement the methodologies and techniques described in the paper, focusing on the application of topological data analysis to understand tail dependence in financial markets.
@@ -50,12 +28,12 @@ The documentation `code` documentation is in `build/docs`.
 
 ## Setup and Data Retrieval
 
-Import Libraries: Import necessary libraries, including numpy, yfinance, and modules from the FinTDA package.
+Import Libraries: Import necessary libraries, including numpy, yfinance, and modules from the fintda package.
 
 ```python
 import numpy as np
 import yfinance as yf
-from fintda import FinTDA
+from fintda import fintda
 from fintda.auxiliary import get_data_range
 %matplotlib inline
 ```
@@ -86,13 +64,13 @@ returns = np.log(df_close.pct_change() + 1)
 returns.dropna(inplace=True)
 ```
 
-## Financial Time Series Analysis with FinTDA
+## Financial Time Series Analysis with fintda
 
-Initialize FinTDA: Create an instance of FinTDA with the processed returns and predefined weights.
+Initialize fintda: Create an instance of fintda with the processed returns and predefined weights.
 
 ```python
 weights = np.array([0.5, 0.3, 0.2])  # Define portfolio weights
-ftda = FinTDA(returns, weights, log_returns=False)
+ftda = fintda(returns, weights, log_returns=False)
 ```
 
 ```console
@@ -108,8 +86,6 @@ distance = ftda.compute_moving_dgm(plot=True)
 ```console
 Computing Moving Diagrams: 100%|██████████| 5556/5556 [00:09<00:00, 580.01it/s]
 ```
-
-<img src="./resources/figure/output_1.png">
 
 # Reference
 

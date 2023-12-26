@@ -13,7 +13,7 @@ def read(*names, **kwargs):
 
 
 setup(
-    name='financetda',
+    name='fintda',
     version='2023.12.1',
     description='An example package. Generated with cookiecutter-pylibrary.',
     author='Ismail Baris',
@@ -66,7 +66,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'ftda = financetda.cli:main',
+            'ftda = fintda.cli:main',
         ]
     },
 )

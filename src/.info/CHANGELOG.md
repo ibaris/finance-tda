@@ -10,5 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 -   Add package data.
--   Add the class `FinanceTDA`.
+-   Add the class `FinTDA`.
 -   Add example
+
+### Changed
+
+-   Due to PyPi problems changed the name from `finance-tda` to `fintda`
