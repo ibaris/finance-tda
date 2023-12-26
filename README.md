@@ -22,7 +22,7 @@
 
 # Introduction
 
-This repository hosts the Python package developed from the research presented in the paper "Topological Tail Dependence: Evidence from Forecasting Realized Volatility" by Hugo Gobato Souto. The package is designed to implement the methodologies and techniques described in the paper, focusing on the application of topological data analysis to understand tail dependence in financial markets.
+This repository hosts the Python package developed from the research presented in the paper ["Topological Tail Dependence: Evidence from Forecasting Realized Volatility"](https://doi.org/10.1016/j.jfds.2023.100107) and [repositoy](https://github.com/hugogobato/Topological-Tail-Dependence-Evidence-from-Forecasting-Realized-Volatility) by Hugo Gobato Souto. The package is designed to implement the methodologies and techniques described in the paper, focusing on the application of topological data analysis to understand tail dependence in financial markets.
 
 The core of this package lies in its ability to model and forecast realized volatility in financial markets through the lens of topological data analysis. It presents a novel approach to understanding the complex relationships in financial data, especially during periods of high volatility or market stress.
 
