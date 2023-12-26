@@ -12,6 +12,11 @@ def read(*names, **kwargs):
         return fh.read()
 
 
+# Read the contents of your README file
+with open('README.pypi.md', 'r', encoding='utf-8') as f:
+    long_description = f.read()
+
+
 setup(
     name='fintda',
     version='2023.12.2',
@@ -19,6 +24,8 @@ setup(
     author='Ismail Baris',
     author_email='i.baris@outlook.de',
     url='https://github.com/ibaris/finance-tda',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
@@ -49,7 +56,7 @@ setup(
     ],
     project_urls={
         'Documentation': 'https://finance-tda.readthedocs.io/',
-        'Changelog': 'https://finance-tda.readthedocs.io/en/latest/changelog.html',
+        'Changelog': 'https://github.com/ibaris/finance-tda/blob/main/src/.info/CHANGELOG.md',
         'Issue Tracker': 'https://github.com/ibaris/finance-tda/issues',
     },
     keywords=[
