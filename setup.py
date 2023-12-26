@@ -19,7 +19,7 @@ with open('README.pypi.md', 'r', encoding='utf-8') as f:
 
 setup(
     name='fintda',
-    version='2023.12.3',
+    version='2023.12.4',
     description='An example package. Generated with cookiecutter-pylibrary.',
     author='Ismail Baris',
     author_email='i.baris@outlook.de',
