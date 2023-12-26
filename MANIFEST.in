@@ -16,6 +16,7 @@ include ./envs/*
 include CONTRIBUTING.md
 include LICENSE
 include README.md
+include README.pypi.md
 recursive-include src/data *
 recursive-include src/.info *
 include requirements.txt
