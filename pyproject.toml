@@ -10,9 +10,9 @@ target-version = ['py38']
 skip-string-normalization = true
 
 [tool.bumpver]
-current_version = "2023.12.23"
+current_version = "2023.12.1"
 version_pattern = "YYYY.MM.PATCH"
-commit_message = "ver(financetda): bump version from {old_version} -> {new_version}"
+commit_message = "ver(VaR): bump version from {old_version} -> {new_version}"
 commit = true
 tag = true
 push = true
@@ -23,23 +23,18 @@ push = true
 ]
 "setup.py" = [
     "{version}",
-    "{pep440_version}",
 ]
 "README.md" = [
     "{version}",
-    "{pep440_version}",
 ]
 "src/financetda/__init__.py" = [
     "{version}",
-    "{pep440_version}",
 ]
 "docs/conf.py" = [
     "{version}",
-    "{pep440_version}",
 ]
 "docs/readme.rst" = [
     "{version}",
-    "{pep440_version}",
 ]
 
 [tool.isort]

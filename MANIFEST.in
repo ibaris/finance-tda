@@ -10,14 +10,17 @@ include .github/workflows/github-actions.yml
 include .pre-commit-config.yaml
 include .readthedocs.yml
 include pytest.ini
-include tox.ini
 
 include ./src/.info/*
 include ./envs/*
 include CONTRIBUTING.md
 include LICENSE
 include README.md
-include ./.vscode/*
-include ./.gitlab/*
+recursive-include src/data *
+recursive-include src/.info *
+include requirements.txt
+recursive-include thirdparty/ *
+recursive-include resources/ *
+recursive-include examples/ *
 
 global-exclude *.py[cod] __pycache__/* *.so *.dylib

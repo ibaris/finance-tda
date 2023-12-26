@@ -2,13 +2,9 @@
 # -*- encoding: utf-8 -*-
 import io
 from glob import glob
-from os.path import basename
-from os.path import dirname
-from os.path import join
-from os.path import splitext
+from os.path import basename, dirname, join, splitext
 
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 def read(*names, **kwargs):
@@ -18,7 +14,7 @@ def read(*names, **kwargs):
 
 setup(
     name='financetda',
-    version='2023.12.23',
+    version='2023.12.1',
     description='An example package. Generated with cookiecutter-pylibrary.',
     author='Ismail Baris',
     author_email='i.baris@outlook.de',
