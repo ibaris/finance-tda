@@ -20,7 +20,7 @@ project = 'Finance TDA'
 year = '2023'
 author = 'Ismail Baris'
 copyright = '{0}, {1}'.format(year, author)
-version = release = '2024.2.1'
+version = release = '2024.2.2'
 
 pygments_style = 'trac'
 templates_path = ['.']
