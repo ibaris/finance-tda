@@ -10,7 +10,7 @@ target-version = ['py38']
 skip-string-normalization = true
 
 [tool.bumpver]
-current_version = "2023.12.4"
+current_version = "2024.2.1"
 version_pattern = "YYYY.MM.PATCH"
 commit_message = "ver(VaR): bump version from {old_version} -> {new_version}"
 commit = true
