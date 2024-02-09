@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=E1101
+# pylint: disable=E1101,R0913,R0914,R0902
 """
 Topological Tail Dependence
 ===========================
@@ -31,7 +31,7 @@ __all__ = ['FinTDA']
 
 class FinTDA:
     """
-    fintda class for computing persistence diagrams and analyzing financial time series data.
+    FinTDA class for computing persistence diagrams and analyzing financial time series data.
 
     Parameters
     ----------
@@ -263,7 +263,7 @@ class FinTDA:
 
             # Plot 2: Distance
             ax2.plot(data.index[windows_size:n+windows_size], distance,
-                     color='red', label="{0} Distance (scaled)".format(distance_name))
+                     color='red', label=f"{distance_name} Distance (scaled)")
 
             ax2.set_xlabel('Date')
             ax2.set_ylabel('Topological Distance')

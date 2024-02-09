@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=E1101
 """
-Auxiliary functions for the fintda package.
-===============================================
+Auxiliary functions for the fintda package
+==========================================
 *Created on 25.12.2023 by bari_is*
 *Copyright (C) 2023*
 *For COPYING and LICENSE details, please refer to the LICENSE file*
