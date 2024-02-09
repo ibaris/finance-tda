@@ -15,7 +15,7 @@ analysis to understand tail dependence in financial markets.
 
 """
 import warnings
-from typing import List, Literal, Optional, Union
+from typing import List, Literal, Optional, Sequence
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -38,7 +38,9 @@ class FinTDA:
     returns : pd.DataFrame
         The returns data for the financial time series.
     weights : Union[List, np.ndarray]
-        The weights corresponding to the assets in the portfolio.
+        The weights corresponding to the assets in the portfolio. If None, then the weights will be equal to 1/n,
+        where n is the number of assets in the portfolio. Default is None. If the sum of the weights is not equal to 1,
+        then the weights will be normalized to sum to 1.
     maxdim : int, optional
         The maximum dimension for computing persistence diagrams. Default is 2.
     **kwargs : dict
@@ -80,9 +82,18 @@ class FinTDA:
 
     def __init__(self,
                  returns: pd.DataFrame,
-                 weights: Union[List, np.ndarray],
-                 maxdim: int = 2,
-                 **kwargs):
+                 weights: Optional[Sequence] = None,
+                 maxdim: int = 2):
+
+        if weights is None:
+            weights = np.ones(returns.shape[1]) / returns.shape[1]
+
+        if len(weights) != returns.shape[1]:
+            raise ValueError("The length of the weights must be equal to the number of assets in the portfolio. "
+                             "The current length of the weights is {len(weights)} and the number of assets in the portfolio is {returns.shape[1]}.")
+
+        if np.sum(weights) != 1:
+            weights = np.array(weights) / np.sum(weights)
 
         self.returns = returns * weights
         self.weights = np.atleast_1d(weights).flatten()
