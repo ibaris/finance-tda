@@ -58,7 +58,6 @@ Import Libraries: Import necessary libraries, including numpy, yfinance, and mod
 import numpy as np
 import yfinance as yf
 from fintda import FinTDA
-from fintda.auxiliary import get_data_range
 %matplotlib inline
 ```
 
@@ -90,11 +89,11 @@ returns.dropna(inplace=True)
 
 ## Financial Time Series Analysis with FinTDA
 
-Initialize FinTDA: Create an instance of FinTDA with the processed returns and predefined weights.
+Initialize FinTDA: Create an instance of FinTDA with the processed returns and predefined weights. If the weights are None, then the weights will be equal to 1/n, where n is the number of assets in the portfolio. Moreover, if the sum of the weights is not equal to 1, then the weights will be normalized to sum to 1.
 
 ```python
-weights = np.array([0.5, 0.3, 0.2])  # Define portfolio weights
-ftda = FinTDA(returns, weights, log_returns=False)
+weights = np.array([0.5, 0.3, 0.2])  # Define portfolio weights.
+ftda = FinTDA(returns, weights)
 ```
 
 ```console
@@ -115,7 +114,7 @@ Computing Moving Diagrams: 100%|██████████| 5556/5556 [00:09
 
 # Reference
 
-The development of this package is based on the research published in the following paper:
+The development of this package is based on the research published in **\*the\*\*** following paper:
 
 Souto, H.G. (2023). Topological Tail Dependence: Evidence from Forecasting Realized Volatility. The Journal of Finance and Data Science, 9. DOI: [10.1016/j.jfds.2023.100107](https://doi.org/10.1016/j.jfds.2023.10010)
 
