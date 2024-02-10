@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=E1101,R0913,R0914,R0902
 """
-Topological Tail Dependence
-===========================
+Topological Data Anaylsis for Financial Time Series Data
+========================================================
 *Created on 23.12.2023 by bari_is*
 *Copyright (C) 2023*
 *For COPYING and LICENSE details, please refer to the LICENSE file*
@@ -31,20 +31,29 @@ __all__ = ['FinTDA']
 
 class FinTDA:
     """
-    FinTDA class for computing persistence diagrams and analyzing financial time series data.
+    Central to finance-tda package is the FinTDA class, which encapsulates the computation of persistence diagrams to 
+    analyze the tail dependence in financial time series data.
 
     Parameters
     ----------
     returns : pd.DataFrame
-        The returns data for the financial time series.
-    weights : Union[List, np.ndarray]
+        A Pandas DataFrame containing asset return data, structured as NxM where N represents time 
+        frames and M represents specific assets.
+    weights : Sequence, optional
         The weights corresponding to the assets in the portfolio. If None, then the weights will be equal to 1/n,
         where n is the number of assets in the portfolio. Default is None. If the sum of the weights is not equal to 1,
         then the weights will be normalized to sum to 1.
-    maxdim : int, optional
-        The maximum dimension for computing persistence diagrams. Default is 2.
-    **kwargs : dict
-        Additional keyword arguments.
+    maxdim: int, optional
+        An Integer parameter, borrowed from the ripser Python package, which specifies the highest dimension of 
+        homology to compute, where higher dimensions represent more complex shapes in data. 
+        It defaults to 2, indicating both H0 and H1 will be computed.
+    thresh: float, optional
+        A float value which determines the maximum edge length for simplices in the Vietoris-Rips filtration, 
+        controlling the scale of topological features analyzed. The default value is set to infinity, which means, 
+        that the entire filtration will be computed.
+    coeff: int, optional
+        An integer value that sets the prime field for homology calculations, affecting the algebraic structure of 
+        the computation. Defaults to 2.
 
     Attributes
     ----------
@@ -70,7 +79,9 @@ class FinTDA:
     Methods
     -------
     compute_dgm(days=None, begin_date=None, end_date=None, plot=False)
-        Compute the persistence diagram for the given data.
+        The compute_dgm method is designed to compute the persistence diagram of a given financial time 
+        series data. This method applies topological data analysis (TDA) to uncover the underlying topological 
+        features of the dataset, such as loops and voids, which persist over various scales. 
     compute_moving_dgm(windows_size=20, time_segments=None, days=None, begin_date=None, end_date=None, distance_method='wasserstein', plot=False)
         Compute the moving persistence diagram for a given time series.
 
@@ -83,7 +94,9 @@ class FinTDA:
     def __init__(self,
                  returns: pd.DataFrame,
                  weights: Optional[Sequence] = None,
-                 maxdim: int = 2):
+                 maxdim: int = 2,
+                 thresh: float = np.inf,
+                 coeff: int = 2):
 
         if weights is None:
             weights = np.ones(returns.shape[1]) / returns.shape[1]
@@ -114,7 +127,10 @@ class FinTDA:
             "Portfolio Volatility": self._portfolio_volatility
         }
 
-        self._rips = Rips(maxdim=maxdim)
+        self._rips = Rips(maxdim=maxdim,
+                          thresh=thresh,
+                          coeff=coeff,
+                          verbose=False)
 
     # ----------------------------------------------------------------------------------------------
     # Magic Methods
@@ -145,32 +161,65 @@ class FinTDA:
                     begin_date: Optional[str] = None,
                     end_date: Optional[str] = None,
                     plot: bool = False) -> List[np.ndarray]:
-        """Compute the persistence diagram (dgm) for the given data.
+        """
+        The compute_dgm method is designed to compute the persistence diagram of a given financial time series data.
+        This method applies topological data analysis (TDA) to uncover the underlying topological features of 
+        the dataset, such as loops and voids, which persist over various scales. 
 
         Parameters
         ----------
         days : Optional[int]
-            Number of days to consider for the data range (see Notes).
+            An integer value that specifies the number of days for the data range to be analyzed, allowing 
+            for a focused examination of specific time periods. Suppose you have a financial time series dataset 
+            representing the daily returns of a portfolio over the past year. Instead of analyzing the entire year's 
+            data, one can decide to focus on a 90-day period. If the parameter is None (default), the entire dataset 
+            is considered unless the parameter begin_date and/or end_date are specified.
         begin_date : Optional[str]
-            Start date of the data range in the format 'YYYY-MM-DD'. If None, then the data range will start 
-            from the first date in the data.
+            A string value of form 'YYYY-MM-DD', which sets the starting date of the analysis period, enabling 
+            targeted analysis from a specific point in time. If both parameter days and begin_date are specified, 
+            the data range will start from begin_date and span days days forward. If None, the data range starts 
+            from the earliest date in the dataset.
         end_date : Optional[str]
-            End date of the data range in the format 'YYYY-MM-DD'. If None, then the data range will end
-            at the last date in the data.
+            A string value of form 'YYYY-MM-DD', which sets the end date of the analysis period, enabling targeted 
+            analysis from a specific point in time. If None, the data range ends at the latest date in the dataset.
         plot : bool, optional
             Whether to plot the persistence diagram.
 
         Returns
         -------
         List[np.ndarray]
-            The computed persistence diagram.
+            The method returns a collection of persistence diagrams, with one diagram for each dimension up to 
+            the specified maximum dimension (the maxdim parameter). Each diagram is provided as a two-dimensional 
+            numpy array, where the number of rows corresponds to the number of feature pairs identified in that 
+            dimension. 
 
-        Notes
-        -----
-        If `days` and `begin_date` is specified, then the data range will be from `begin_date` to  
-        `begin_date + days`.
+        Examples
+        --------
+        >>> from fintda import FinTDA
+        >>> from fintda.auxiliary import load_data
+        >>> # Determine some asset returns
+        >>> returns = load_data()
+        >>> ftda = FinTDA(returns)
 
+        >>> # Compute the persistence diagram for the entire dataset
+        >>> dgm = ftda.compute_dgm()
+
+        >>> # Compute the persistence diagram for the first 90 days of data
+        >>> dgm = ftda.compute_dgm(days=90)
+
+        >>> # Compute the persistence diagram starting from a specific date
+        >>> dgm = ftda.compute_dgm(begin_date='2022-01-01')
+
+        >>> # Compute the persistence diagram starting from a specific date and ending 90 days later
+        >>> dgm = ftda.compute_dgm(days=90, begin_date='2022-01-01')
+
+        >>> # Compute the persistence diagram for a specific date range
+        >>> dgm = ftda.compute_dgm(begin_date='2022-01-01', end_date='2022-03-31')
+
+        >>> # Compute and plot the persistence diagram for the entire dataset
+        >>> dgm = ftda.compute_dgm(plot=True)
         """
+
         data = get_data_range(self.returns, begin_date, end_date, days)
         dgm = self._rips.fit_transform(data.values)
 
@@ -188,36 +237,58 @@ class FinTDA:
                            distance_method: Literal['wasserstein', 'bottleneck'] = 'wasserstein',
                            plot: bool = False) -> pd.Series:
         """
-        Compute the moving persistence diagram (dgm) for a given time series.
+        The compute_moving_dgm method extends the capabilities of compute_dgm by applying TDA across moving windows 
+        of the financial time series data. This approach allows for the dynamic analysis of topological features over 
+        time, providing a deeper understanding of how the data's topological structure evolves.
 
         Parameters
         ----------
         windows_size : int, optional
-            The size of the moving window. Default is 20.
+            An integer value that defines the size of each moving window, controlling the granularity of the temporal 
+            analysis. Default is 20.
         time_segments : int, optional
-            The number of time segments to divide the time series into. If None (default), then the time
-            series will be divided into n - (2 * windows_size) + 1 segments, where n is the length of the
-            time series.
-        The end date of the data range in the format 'YYYY-MM-DD'.
+            An integer value, which specifies the number of segments for analysis, offering flexibility in the division 
+            of the time series. If None (default), the time series will be divided into 
+            n - (2 * windows_size) + 1 segments, where n is the length of the time series.
         days : Optional[int]
-            Number of days to consider for the data range (see Notes).
+            An integer value that specifies the number of days for the data range to be analyzed, allowing 
+            for a focused examination of specific time periods. Suppose you have a financial time series dataset 
+            representing the daily returns of a portfolio over the past year. Instead of analyzing the entire year's 
+            data, one can decide to focus on a 90-day period. If the parameter is None (default), the entire dataset 
+            is considered unless the parameter begin_date and/or end_date are specified.
         begin_date : Optional[str]
-            Start date of the data range in the format 'YYYY-MM-DD'. If None, then the data range will start 
-            from the first date in the data.
+            A string value of form 'YYYY-MM-DD', which sets the starting date of the analysis period, enabling 
+            targeted analysis from a specific point in time. If both parameter days and begin_date are specified, 
+            the data range will start from begin_date and span days days forward. If None, the data range starts 
+            from the earliest date in the dataset.
         end_date : Optional[str]
-            End date of the data range in the format 'YYYY-MM-DD'. If None, then the data range will end
-            at the last date in the data.
-        plot : bool, optional
-            Whether to plot the persistence diagram.
+            A string value of form 'YYYY-MM-DD', which sets the end date of the analysis period, enabling targeted 
+            analysis from a specific point in time. If None, the data range ends at the latest date in the dataset.
         distance_method : {'wasserstein', 'bottleneck'}, optional
             The distance method to use for computing persistence diagrams. Default is 'wasserstein'.
         plot : bool, optional
-            Whether to plot the computed persistence diagrams. Default is False.
+            Whether to plot the computed distances. Default is False.
 
         Returns
         -------
         pd.Series
             The computed moving persistence diagram.
+
+        Examples
+        --------
+        >>> from fintda import FinTDA
+        >>> from fintda.auxiliary import load_data
+        >>> # Determine some asset returns
+        >>> returns = load_data()
+        >>> ftda = FinTDA(returns)
+        >>> moving_dgm = ftda.compute_moving_dgm(windows_size=30, plot=True)
+        >>> print(moving_dgm)
+        Date
+        2022-01-01    0.1234
+        2022-01-02    0.5678
+        2022-01-03    0.9876
+        ...
+        dtype: float64
 
         References
         ----------
