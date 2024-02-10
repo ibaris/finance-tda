@@ -1,3 +1,3 @@
-__version__ = '2024.2.2'
+__version__ = '2024.2.3'
 from . import auxiliary
 from .ftda import FinTDA
