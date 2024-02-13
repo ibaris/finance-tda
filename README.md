@@ -11,8 +11,6 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://media1.giphy.com/media/hpddP09Trx1AwSVlgm/giphy.gif?cid=ecf05e47uwg39vrpmksf5f73kcmi8iuy11r9p2l3540j8jfo&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-grammas-recipe.svg)](https://media2.giphy.com/media/q2b0xsUuQFGHDoUVFB/giphy.gif?cid=ecf05e47fb1zlbo33kivfd73z4yzdn97ej6tagfeyacvfojo&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
-<a href="https://www.buymeacoffee.com/ibaris" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
 <p align="center">
   <a href="#introduction">Introduction</a> •
   <a href="#installation">Installation</a> •
